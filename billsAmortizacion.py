@@ -22,8 +22,11 @@ def amortizacion(monto, tasa, cuotas):
             interes = round((tasa * saldo) / 100, 2)
             abono_capital = round(valor_cuota - interes, 2)
             saldo = round(saldo - abono_capital, 2)
+            
 
             fila = [numero_cuota, saldo, interes, abono_capital]
+            if fila[1] < 0:
+                fila[1] = 0
             tabla_amortizacion.append(fila)
             print(fila)
 
