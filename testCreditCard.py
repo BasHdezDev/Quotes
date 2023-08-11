@@ -1,6 +1,7 @@
 import unittest
 import billsCalculator
 import billsAmortizacion
+import exceptions
 
 class testCreditCard(unittest.TestCase):
     def testPayment(self):
@@ -15,21 +16,30 @@ class testCreditCard(unittest.TestCase):
         answer = 10000
         self.assertEqual(billsCalculator.monthly_bills(480000, 0, 48), answer)
 
-    def testPaymentAnualBill(self):
-        answer = "La tasa no puede superar el 100% anual"
-        self.assertRaises(billsCalculator.TasaExcesiva, billsCalculator.monthly_bills,50000,12.4,60)
+    def testUsura(self):
+        monto = 50000
+        tasa = 12.4
+        cuotas = 48
+        self.assertRaises(exceptions.Usura, billsCalculator.monthly_bills, monto, tasa, cuotas)
 
     def testPaymentOneQuote(self):
         answer = 90000
         self.assertEqual(billsCalculator.monthly_bills(90000,2.4,1),answer)
         
-    def testPaymentNoPrice(self):
-        answer = "Error, no se especificó el monto de la compra"
-        self.assertEqual(billsCalculator.monthly_bills(0,2.4,60),answer)
-
     def testPaymentNoQuotes(self):
-        answer = "Error, no se especificó el plazo de la compra"
-        self.assertEqual(billsCalculator.monthly_bills(80000,1.8,0),answer)
+        self.assertRaises(exceptions.MontoNulo, billsCalculator.monthly_bills, 0, 2.4, 0)
+    
+    def testNoMonto(self):
+        monto = 0
+        tasa = 2.4
+        cuotas = 60
+        self.assertRaises(exceptions.MontoNulo, billsCalculator.monthly_bills, monto, tasa, cuotas)
+
+    def testCuotasNegativas(self):
+        monto = 2
+        tasa = 3.1
+        cuotas = -2
+        self.assertRaises(exceptions.CuotaNegativa, billsCalculator.monthly_bills, monto, tasa, cuotas)
         
 
 

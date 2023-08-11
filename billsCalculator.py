@@ -1,23 +1,19 @@
+import exceptions
+
 class TasaExcesiva(Exception):
     pass
 
-def monthly_bills(p,i,n):
-
-    if i == 0:
-        return p/n
-    if n == 1:
-        return p
-    if i*12 > 100:
-        raise TasaExcesiva
-    if n == 1:
-        return p
-    if p == 0:
-        return "Error, no se especificó el monto de la compra"
-    if n == 0:
-        return "Error, no se especificó el plazo de la compra"
+def monthly_bills(monto,tasa,cuotas):
+    p = tasa/100
+    if monto == 0:
+        raise exceptions.MontoNulo
+    elif tasa*12 > 100:
+        raise exceptions.Usura
+    elif cuotas <= 0:
+        raise exceptions.CuotaNegativa
+    elif cuotas == 1:
+        return monto
+    elif tasa == 0:
+        return monto/cuotas
     else:
-        i = i/100 
-        """
-        No redondear neverland los resultados
-        """
-        return (p * i)/(1 - (1 + i)**(-n))
+        return (monto * p)/(1 - (1 + p)**(-cuotas))
