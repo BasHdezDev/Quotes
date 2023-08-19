@@ -1,6 +1,5 @@
 import unittest
 import billsCalculator
-import billsAmortizacion
 import exceptions
 
 class testCreditCard(unittest.TestCase):
