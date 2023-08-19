@@ -1,4 +1,5 @@
 import billsCalculator
+import exceptions
 
 def interes_total(monto,tasa,cuotas):
     valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
@@ -35,6 +36,12 @@ def amortizacion_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abono
         
             abono_capital = cuota_real_a_abonar - interes
             saldo -= abono_capital
+            
+            if abonoextra < cuota_real_a_abonar:
+                raise exceptions.AbonoBajo
+            
+            if abonoextra > saldo:
+                raise exceptions.AbonoAlto
 
             if saldo < 0:
                 abono_capital += saldo + interes

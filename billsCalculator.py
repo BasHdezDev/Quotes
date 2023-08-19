@@ -1,8 +1,5 @@
 import exceptions
 
-class TasaExcesiva(Exception):
-    pass
-
 def monthly_bills(monto,tasa,cuotas):
     p = tasa/100
     if monto == 0:
