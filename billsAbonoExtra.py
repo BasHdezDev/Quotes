@@ -20,6 +20,10 @@ def amortizacion_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abono
         tabla_amortizacion.append(fila)
     else:
         for cuota in range(1, cuotas + 1):
+            
+            
+            if saldo <=0:
+                break
 
             numero_cuota = cuota
             interes = interes_x * saldo
@@ -30,13 +34,17 @@ def amortizacion_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abono
                 cuota_real_a_abonar = valor_cuota
         
             abono_capital = cuota_real_a_abonar - interes
-            saldo = saldo - abono_capital
-            
+            saldo -= abono_capital
+
             if saldo < 0:
-                break
+                abono_capital += saldo + interes
+                saldo = 0
 
             fila = [numero_cuota, saldo, interes, abono_capital]
             tabla_amortizacion.append(fila)
+
+        if saldo < abono_capital:
+                abono_capital = saldo
 
     return tabla_amortizacion
 
