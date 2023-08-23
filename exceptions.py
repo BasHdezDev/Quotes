@@ -1,4 +1,4 @@
-class MontoNulo(Exception):
+class ZeroAmount(Exception):
     pass
 
 

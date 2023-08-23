@@ -1,16 +1,16 @@
 import exceptions
 
-def monthly_bills(monto,tasa,cuotas):
-    p = tasa/100
-    if monto == 0:
-        raise exceptions.MontoNulo
-    elif tasa*12 > 100:
+def monthly_bills(Amount,Interest,Payment):
+    p = Interest/100
+    if Amount == 0:
+        raise exceptions.ZeroAmount
+    elif Interest*12 > 100:
         raise exceptions.Usura
-    elif cuotas <= 0:
+    elif Payment <= 0:
         raise exceptions.CuotaNegativa
-    elif cuotas == 1:
-        return monto
-    elif tasa == 0:
-        return monto/cuotas
+    elif Payment == 1:
+        return Amount
+    elif Interest == 0:
+        return Amount/Payment
     else:
-        return (monto * p)/(1 - (1 + p)**(-cuotas))
+        return (Amount * p)/(1 - (1 + p)**(-Payment))
