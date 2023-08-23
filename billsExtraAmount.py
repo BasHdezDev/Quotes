@@ -6,7 +6,7 @@ def interes_total(monto,tasa,cuotas):
     total_intereses = (valor_cuota * cuotas) - monto
     return total_intereses
 
-def amortizacion_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abonoextra):
+def amortization_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abonoextra):
 
     valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
     print(valor_cuota)
@@ -61,4 +61,4 @@ tasa_interes = 3.1
 numero_cuota_a_abonar = 10
 abonoextra = 53000
 
-print(amortizacion_con_abono_extra(monto, tasa_interes, cuotas,numero_cuota_a_abonar,abonoextra))
+print(amortization_con_abono_extra(monto, tasa_interes, cuotas,numero_cuota_a_abonar,abonoextra))

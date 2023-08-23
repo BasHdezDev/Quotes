@@ -1,6 +1,6 @@
 import billsCalculator
-import billsAmortizacion
-import billsAbonoExtra
+import billsAmortization
+import billsExtraAmount
 
 print("¡Bienvenido!, qué tipo de cálculo desea hacer?")
 
@@ -18,11 +18,11 @@ if eleccion == 2:
     monto = float(input("Especifique el monto a pagar: "))
     tasa = float(input("Especifique la tasa actual: "))
     cuotas = int(input("Especifique a cúantas cuotas pagará el monto: "))
-    print(billsAmortizacion.amortizacion(monto,tasa,cuotas))
+    print(billsAmortization.amortizacion(monto,tasa,cuotas))
 if eleccion == 3:
     monto = float(input("Especifique el monto a pagar: "))
     tasa = float(input("Especifique la tasa actual: "))
     cuotas = int(input("Especifique a cúantas cuotas pagará el monto: "))
     numero_cuota_a_abonar = int(input("Especifique en qué cuota va a hacer un abono extra: "))
     abonoextra = float(input("Especifique de cúanto será el abono extra: "))
-    print(billsAbonoExtra.amortizacion_con_abono_extra(monto,tasa,cuotas,numero_cuota_a_abonar,abonoextra))
+    print(billsExtraAmount.amortization_con_abono_extra(monto,tasa,cuotas,numero_cuota_a_abonar,abonoextra))
