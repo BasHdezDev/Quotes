@@ -18,7 +18,7 @@ if eleccion == 2:
     monto = float(input("Especifique el monto a pagar: "))
     tasa = float(input("Especifique la tasa actual: "))
     cuotas = int(input("Especifique a cúantas cuotas pagará el monto: "))
-    print(billsAmortization.amortizacion(monto,tasa,cuotas))
+    print(billsAmortization.amortization(monto,tasa,cuotas))
 if eleccion == 3:
     monto = float(input("Especifique el monto a pagar: "))
     tasa = float(input("Especifique la tasa actual: "))

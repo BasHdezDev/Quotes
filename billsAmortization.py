@@ -5,7 +5,7 @@ def interes_total(monto,tasa,cuotas):
     total_intereses = (valor_cuota * cuotas) - monto
     return total_intereses
 
-def amortizacion(monto, tasa, cuotas):
+def amortization(monto, tasa, cuotas):
     valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
     print(valor_cuota)
     interes_x = tasa/100
@@ -35,4 +35,4 @@ monto = 850000
 cuotas = 24
 tasa_interes = 3.4
 
-print(amortizacion(monto, tasa_interes, cuotas))
+print(amortization(monto, tasa_interes, cuotas))
