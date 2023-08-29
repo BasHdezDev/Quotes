@@ -54,11 +54,3 @@ def amortization_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abono
                 abono_capital = saldo
 
     return tabla_amortizacion
-
-monto = 200000
-cuotas = 36
-tasa_interes = 3.1
-numero_cuota_a_abonar = 10
-abonoextra = 53000
-
-print(amortization_con_abono_extra(monto, tasa_interes, cuotas,numero_cuota_a_abonar,abonoextra))

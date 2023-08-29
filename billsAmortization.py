@@ -30,9 +30,3 @@ def amortization(monto, tasa, cuotas):
             print(fila)
 
     return tabla_amortizacion
-
-monto = 850000
-cuotas = 24
-tasa_interes = 3.4
-
-print(amortization(monto, tasa_interes, cuotas))
