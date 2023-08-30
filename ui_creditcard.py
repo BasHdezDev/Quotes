@@ -4,7 +4,6 @@ import billsExtraAmount
 
 
 class Menu:
-
     print("¡Bienvenido!, qué tipo de cálculo desea hacer?")
 
     print("1. Una compra con tarjeta de crédito y calcular el total de intereses")
