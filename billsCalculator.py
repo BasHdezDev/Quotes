@@ -1,13 +1,13 @@
-import exceptions
+import billsExceptions
 
 def monthly_bills(Amount,Interest,Payment):
     p = Interest/100
     if Amount == 0:
-        raise exceptions.ZeroAmount
+        raise billsExceptions.ZeroAmount
     elif Interest*12 > 100:
-        raise exceptions.Usura
+        raise billsExceptions.Usura
     elif Payment <= 0:
-        raise exceptions.CuotaNegativa
+        raise billsExceptions.CuotaNegativa
     elif Payment == 1:
         return Amount
     elif Interest == 0:
