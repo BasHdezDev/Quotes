@@ -1,32 +1,32 @@
 import billsCalculator
 
-def interes_total(monto,tasa,cuotas):
-    valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
-    total_intereses = (valor_cuota * cuotas) - monto
-    return total_intereses
+def interes_total(Amount,Interest,Payment):
+    Amount_value = billsCalculator.monthly_bills(Amount, Interest, Payment)
+    total_interest = (Amount_value * Payment) - Amount
+    return total_interest
 
-def amortization(monto, tasa, cuotas):
-    valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
-    print(valor_cuota)
-    interes_x = tasa/100
-    saldo = monto
-    tabla_amortizacion = [["Cuota", "Saldo", "Pago interés", "Abono capital"], ["#", valor_cuota, tasa, monto]]
-    if cuotas == 1:
-        numero_cuota = 1
-        interes = (tasa * saldo) / 100
-        abono_capital = valor_cuota - interes
-        fila = [numero_cuota, saldo, interes, abono_capital]
-        tabla_amortizacion.append(fila)
+def amortization(Amount, Interest, Payment):
+    Amount_value = billsCalculator.monthly_bills(Amount, Interest, Payment)
+    print(Amount_value)
+    interest_x = Interest/100
+    balance = Amount
+    amortization_table = [["Cuota", "balance", "Pago interés", "Abono capital"], ["#", Amount_value, Interest, Amount]]
+    if Payment == 1:
+        amount_number = 1
+        interest_ = (Interest * balance) / 100
+        payment_stock = Amount_value - interest_
+        row = [amount_number, balance, interest_, payment_stock]
+        amortization_table.append(row)
     else:
-        for cuota in range(1, cuotas + 1):
-            numero_cuota = cuota
-            interes = interes_x * saldo
-            abono_capital = valor_cuota - interes
-            saldo = saldo - abono_capital
+        for cuota in range(1, Payment + 1):
+            amount_number = cuota
+            interes = interest_x * balance
+            payment_stock = Amount_value - interes
+            balance = balance - payment_stock
             
 
-            fila = [numero_cuota, saldo, interes, abono_capital]
-            tabla_amortizacion.append(fila)
-            print(fila)
+            row = [amount_number, balance, interes, payment_stock]
+            amortization_table.append(row)
+            print(row)
 
-    return tabla_amortizacion
+    return amortization_table
