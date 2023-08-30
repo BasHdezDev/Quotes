@@ -1,56 +1,56 @@
 import billsCalculator
 import exceptions
 
-def interes_total(monto,tasa,cuotas):
-    valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
-    total_intereses = (valor_cuota * cuotas) - monto
-    return total_intereses
+def total_interest(amount,interest,payment):
+    amount_value = billsCalculator.monthly_bills(amount, interest, payment)
+    total_interest = (amount_value * payment) - amount
+    return total_interest
 
-def amortization_con_abono_extra(monto, tasa, cuotas,numero_cuota_a_abonar,abonoextra):
+def amortization_con_abono_extra(amount, interest, payment,number_amount_to_pay,extra_payment):
 
-    valor_cuota = billsCalculator.monthly_bills(monto, tasa, cuotas)
-    print(valor_cuota)
-    interes_x = tasa/100
-    saldo = monto
-    tabla_amortizacion = [["Cuota", "Saldo", "Pago interés", "Abono capital"], ["#", valor_cuota, tasa, monto]]
-    if cuotas == 1:
-        numero_cuota = 1
-        interes = (tasa * saldo) / 100
-        abono_capital = valor_cuota - interes
-        fila = [numero_cuota, saldo, interes, abono_capital]
-        tabla_amortizacion.append(fila)
+    amount_value = billsCalculator.monthly_bills(amount, interest, payment)
+    print(amount_value)
+    interes_x = interest/100
+    balance = amount
+    amortization_table = [["Cuota", "balance", "Pago interés", "Abono capital"], ["#", amount_value, interest, amount]]
+    if payment == 1:
+        amount_number = 1
+        interest_ = (interest * balance) / 100
+        payment_stock = amount_value - interest_
+        row = [amount_number, balance, interest_, payment_stock]
+        amortization_table.append(row)
     else:
-        for cuota in range(1, cuotas + 1):
+        for cuota in range(1, payment + 1):
             
             
-            if saldo <=0:
+            if balance <=0:
                 break
 
-            numero_cuota = cuota
-            interes = interes_x * saldo
+            amount_number = cuota
+            interes = interes_x * balance
 
-            if numero_cuota_a_abonar == numero_cuota:
-                cuota_real_a_abonar = abonoextra
+            if number_amount_to_pay == amount_number:
+                cuota_real_a_abonar = extra_payment
             else:
-                cuota_real_a_abonar = valor_cuota
+                cuota_real_a_abonar = amount_value
         
-            abono_capital = cuota_real_a_abonar - interes
-            saldo -= abono_capital
+            payment_stock = cuota_real_a_abonar - interes
+            balance -= payment_stock
             
-            if abonoextra < cuota_real_a_abonar:
+            if extra_payment < cuota_real_a_abonar:
                 raise exceptions.AbonoBajo
             
-            if abonoextra > saldo:
+            if extra_payment > balance:
                 raise exceptions.AbonoAlto
 
-            if saldo < 0:
-                abono_capital += saldo + interes
-                saldo = 0
+            if balance < 0:
+                payment_stock += balance + interes
+                balance = 0
 
-            fila = [numero_cuota, saldo, interes, abono_capital]
-            tabla_amortizacion.append(fila)
+            row = [amount_number, balance, interes, payment_stock]
+            amortization_table.append(row)
 
-        if saldo < abono_capital:
-                abono_capital = saldo
+        if balance < payment_stock:
+                payment_stock = balance
 
-    return tabla_amortizacion
+    return amortization_table
