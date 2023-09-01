@@ -18,6 +18,6 @@ class Savings:
       pass
 
 
-x = Savings(9000,0.7,36)
+x = Savings(36000,0.8,48)
 
 print(x.total_savings())
