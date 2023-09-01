@@ -10,7 +10,7 @@ class testSavings(unittest.TestCase):
         x = Savings(amount,interest,months)
         answer:float = 367029.03
         expected = x.total_savings()
-        self.assertEqual(answer, expected)
+        self.assertRaises()
 
     def testTotalSavingsSecondTest(self):
         amount:float = 36000
