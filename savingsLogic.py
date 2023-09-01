@@ -17,7 +17,3 @@ class Savings:
    def goal_savings(self):
       pass
 
-
-x = Savings(36000,0.8,48)
-
-print(x.total_savings())
