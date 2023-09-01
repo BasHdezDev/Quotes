@@ -13,4 +13,3 @@ class AbonoBajo(Exception):
 
 class TasaExcesiva(Exception):
     pass
-
