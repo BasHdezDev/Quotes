@@ -16,7 +16,7 @@ class testCreditCard(unittest.TestCase):
         self.assertEqual(billsCalculator.monthly_bills(480000, 0, 48), answer)
 
     def testUsura(self):
-        monto = 50000
+        monto:float = 50000
         tasa = 12.4
         cuotas = 48
         self.assertRaises(exceptions.Usura, billsCalculator.monthly_bills, monto, tasa, cuotas)
