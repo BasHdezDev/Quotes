@@ -1,12 +1,12 @@
 import billsCalculator
-import exceptions
+import billsExceptions
 
 def total_interest(amount,interest,payment):
     amount_value = billsCalculator.monthly_bills(amount, interest, payment)
     total_interest = (amount_value * payment) - amount
     return total_interest
 
-def amortization_con_abono_extra(amount, interest, payment,number_amount_to_pay,extra_payment):
+def amortization_with_extra_amount(amount, interest, payment,number_amount_to_pay,extra_payment):
 
     amount_value = billsCalculator.monthly_bills(amount, interest, payment)
     print(amount_value)
@@ -36,12 +36,7 @@ def amortization_con_abono_extra(amount, interest, payment,number_amount_to_pay,
         
             payment_stock = cuota_real_a_abonar - interes
             balance -= payment_stock
-            
-            if extra_payment < cuota_real_a_abonar:
-                raise exceptions.AbonoBajo
-            
-            if extra_payment > balance:
-                raise exceptions.AbonoAlto
+        
 
             if balance < 0:
                 payment_stock += balance + interes
@@ -54,3 +49,5 @@ def amortization_con_abono_extra(amount, interest, payment,number_amount_to_pay,
                 payment_stock = balance
 
     return amortization_table
+
+amortization_with_extra_amount(20000, 3.10, 36, 10, 20000)
