@@ -1,0 +1,5 @@
+/.idea
+venv
+
+# Modulo de datos secretos, nunca debe subirse al repo
+/env
