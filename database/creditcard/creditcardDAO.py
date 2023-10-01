@@ -129,7 +129,8 @@ def Actualizar( creditcard : creditCardTableDTO ):
     cursor.connection.commit()
 
 
-
+def is_expired(creditcard : creditCardTableDTO):
+    pass
 
 def DropTable():
     """
@@ -139,7 +140,7 @@ def DropTable():
     cursor = ObtenerCursor()
     cursor.execute( sql )
     
-def BorrarFilas():
+def deleteRows():
     """
     Borra todas las filas de la tabla (DELETE)
     ATENCION: EXTREMADAMENTE PELIGROSO.
@@ -150,7 +151,7 @@ def BorrarFilas():
     cursor = ObtenerCursor()
     cursor.execute( sql )
 
-def Borrar( creditcard : creditCardTableDTO):
+def delete( creditcard : creditCardTableDTO):
     """ Elimina la fila que contiene una tarjeta de credito en la BD """
     sql = f"delete from creditcard where card_number = '{creditcard.card_number}'"
     cursor = ObtenerCursor()
