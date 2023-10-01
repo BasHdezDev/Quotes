@@ -11,9 +11,13 @@ class Savings:
       for savings in range(self.months):
          self.savings_so_far += round(self.amount+self.interest_so_far,4)
          self.interest_so_far = self.savings_so_far*self.real_interest
-         print(self.savings_so_far)
       return round(self.savings_so_far,2)
 
-   def goal_savings(self):
-      pass
-
+   def goal_savings(self,goal):
+      payment_count = 0
+      self.savings_so_far = 0
+      while self.savings_so_far < goal:
+         self.savings_so_far += round(self.amount+self.interest_so_far,4)
+         self.interest_so_far = self.savings_so_far*self.real_interest
+         payment_count += 1 
+      return payment_count
