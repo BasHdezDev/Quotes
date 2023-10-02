@@ -1,5 +1,6 @@
 import psycopg2
 import json
+from datetime import datetime
 
 from creditCardTableDTO import creditCardTableDTO
 
@@ -129,8 +130,14 @@ def Actualizar( creditcard : creditCardTableDTO ):
     cursor.connection.commit()
 
 
-def is_expired(creditcard : creditCardTableDTO):
-    pass
+def is_expired(fecha):
+
+    fecha = datetime.strptime(fecha, "%d/%m/%Y")
+
+    fechaActual = datetime.now()
+
+    return fecha < fechaActual
+    
 
 def DropTable():
     """
