@@ -4,7 +4,8 @@ import unittest
 
 import creditcardDAO 
 import creditCardTableDTO 
-
+import creditCardPaymentService 
+import creditcardExceptions
 
 class ControllerTest(unittest.TestCase):
     """
@@ -19,6 +20,8 @@ class ControllerTest(unittest.TestCase):
         # 1. Create table 
         creditcardDAO.CreateTable()
 
+
+    """FIRST REQUIREMENT DOWN BELOW"""
 
     def testInsert1(self):
         """ Verifica que funcione bien la creacion y la busqueda de una tarjeta de crédito """
@@ -39,8 +42,7 @@ class ControllerTest(unittest.TestCase):
 
         if creditcardDAO.is_expired(card_test.due_date):
             print("La tarjeta está vencida, no se puede agregar")
-        
-
+    
 
     def testInsert3(self):
         """ Verifica que funcione bien la creacion y la busqueda de una tarjeta de crédito """
@@ -79,8 +81,96 @@ class ControllerTest(unittest.TestCase):
             print("La tarjeta ya existe")
 
 
+            """SECOND REQUIREMENT DOWN BELOW"""
+
+    def PaymentWithCard(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+        monthly_payment_answer = 9297.96
+        self.assertEqual(round(creditCardPaymentService.MonthlyPaymentWithCreditCard(556677,200000,36),2),monthly_payment_answer)
+
+        total_interest_answer = 134726.53
+        self.assertEqual(round(creditCardPaymentService.PaymentWithCreditCard(556677,200000,36),2),total_interest_answer)
+
+    def PaymentWithCard2(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+
+        monthly_payment_answer = 52377.4986
+        self.assertEqual(round(creditCardPaymentService.MonthlyPaymentWithCreditCard(223344,850000,24),4),monthly_payment_answer)
+
+        total_interest_answer = 407059.97
+        self.assertEqual(round(creditCardPaymentService.PaymentWithCreditCard(223344,850000,24),2),total_interest_answer)
+        
+
+    def PaymentWithCard3(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+        monthly_payment_answer = 10000
+        self.assertEqual(creditCardPaymentService.MonthlyPaymentWithCreditCard(445566,480000,48),monthly_payment_answer)
+
+        total_interest_answer = 0
+        self.assertEqual(creditCardPaymentService.PaymentWithCreditCard(445566,480000,48),total_interest_answer)
+        
+
+    def PaymentWithCard4(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+        monthly_payment_answer = 90000
+        self.assertEqual(creditCardPaymentService.MonthlyPaymentWithCreditCard(445566,90000,1),monthly_payment_answer)
+
+        total_interest_answer = 0
+        self.assertEqual(creditCardPaymentService.PaymentWithCreditCard(445566,90000,1),total_interest_answer)
+
+    def PaymentWithCard5(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+
+        id_creditcard = 223344
+        amount = 0
+        payment = 60
+
+        self.assertRaises(creditcardExceptions.ZeroAmount,creditCardPaymentService.MonthlyPaymentWithCreditCard,id_creditcard, amount, payment)
+    
+    def PaymentWithCard6(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+
+        id_creditcard = 556677
+        amount = 50000
+        payment = -10
+
+        self.assertRaises(creditcardExceptions.NegativePayment,creditCardPaymentService.MonthlyPaymentWithCreditCard,id_creditcard, amount, payment)
+
+    def PaymentWithCard7(self):
+        """Verifica el total de intereses y la cuota a pagar
+        
+            Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
+        """
+
+        id_creditcard = 885522
+        amount = 50000
+        payment = 10
+        
+        self.assertRaises(creditcardExceptions.NoCard,creditCardPaymentService.MonthlyPaymentWithCreditCard,id_creditcard, amount, payment)
+
+
+
+
+
 # Este fragmento de codigo permite ejecutar la prueba individualmente
 # Va fijo en todas las pruebas
 if __name__ == '__main__':
-    # print( Payment.calcularCuota.__doc__)
     unittest.main()

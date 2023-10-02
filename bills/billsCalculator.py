@@ -14,3 +14,4 @@ def monthly_bills(Amount,Interest,Payment):
         return Amount/Payment
     else:
         return (Amount * p)/(1 - (1 + p)**(-Payment))
+    
