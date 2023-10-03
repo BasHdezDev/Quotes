@@ -1,4 +1,4 @@
-# Quotes
+# Creditcard Software
 
 Main Software of credit cards handling using Lean Code principles and TDD methodologies
 
