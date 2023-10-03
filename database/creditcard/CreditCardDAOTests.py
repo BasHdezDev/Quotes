@@ -83,7 +83,7 @@ class ControllerTest(unittest.TestCase):
 
             """SECOND REQUIREMENT DOWN BELOW"""
 
-    def PaymentWithCard(self):
+    def testPaymentWithCard(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -94,7 +94,7 @@ class ControllerTest(unittest.TestCase):
         total_interest_answer = 134726.53
         self.assertEqual(round(creditCardPaymentService.PaymentWithCreditCard(556677,200000,36),2),total_interest_answer)
 
-    def PaymentWithCard2(self):
+    def testPaymentWithCard2(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -107,7 +107,7 @@ class ControllerTest(unittest.TestCase):
         self.assertEqual(round(creditCardPaymentService.PaymentWithCreditCard(223344,850000,24),2),total_interest_answer)
         
 
-    def PaymentWithCard3(self):
+    def testPaymentWithCard3(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -119,7 +119,7 @@ class ControllerTest(unittest.TestCase):
         self.assertEqual(creditCardPaymentService.PaymentWithCreditCard(445566,480000,48),total_interest_answer)
         
 
-    def PaymentWithCard4(self):
+    def testPaymentWithCard4(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -130,7 +130,7 @@ class ControllerTest(unittest.TestCase):
         total_interest_answer = 0
         self.assertEqual(creditCardPaymentService.PaymentWithCreditCard(445566,90000,1),total_interest_answer)
 
-    def PaymentWithCard5(self):
+    def testPaymentWithCard5(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -142,7 +142,7 @@ class ControllerTest(unittest.TestCase):
 
         self.assertRaises(creditcardExceptions.ZeroAmount,creditCardPaymentService.MonthlyPaymentWithCreditCard,id_creditcard, amount, payment)
     
-    def PaymentWithCard6(self):
+    def testPaymentWithCard6(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas
@@ -154,7 +154,7 @@ class ControllerTest(unittest.TestCase):
 
         self.assertRaises(creditcardExceptions.NegativePayment,creditCardPaymentService.MonthlyPaymentWithCreditCard,id_creditcard, amount, payment)
 
-    def PaymentWithCard7(self):
+    def testPaymentWithCard7(self):
         """Verifica el total de intereses y la cuota a pagar
         
             Se indica el # de la tarjeta, el monto a pagar y a cuantas cuotas

@@ -4,6 +4,8 @@ import creditcardDAO
 
 def monthly_bills(Amount,Interest,Payment):
         p = Interest/100
+        if Interest == None:
+            raise creditcardExceptions.NoCard
         if Amount == 0:
             raise creditcardExceptions.ZeroAmount
         elif Interest*12 > 100:
@@ -22,15 +24,23 @@ def MonthlyPaymentWithCreditCard(id_creditcard, amount, payment):
 
     cursor = creditcardDAO.ObtenerCursor()
 
-    cursor.execute(f"""
-        select interest_rate from creditcard
+    try:
+        cursor.execute(f"""
+            select interest_rate from creditcard
 
-        where card_number = '{id_creditcard}';
-        """)
+            where card_number = '{id_creditcard}';
+            """)
+    except:
+        raise creditcardExceptions.NoCard
 
     interest_rate = cursor.fetchone()
 
-    monthly_payment = (monthly_bills(amount, float(interest_rate[0]), payment))
+    if interest_rate is not None:
+        interest = float(interest_rate[0])
+    else:
+        raise creditcardExceptions.NoCard
+
+    monthly_payment = (monthly_bills(amount, interest, payment))
 
     #print(f"\nLa cuota es de: {round(monthly_payment,2)}")
 
@@ -47,5 +57,5 @@ def PaymentWithCreditCard(id_creditcard, amount, payment):
 
     return totalinterest
     
-print(MonthlyPaymentWithCreditCard(445566,90000,1))
+
 
